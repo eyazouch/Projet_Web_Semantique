@@ -1,0 +1,686 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.w3.org/2002/07/owl"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:med="med:http://www.ontologie-medicale.fr/onto#*"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#">
+    <Ontology>
+        <dc:creator>Eya</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-04-08T00:00:00</dc:date>
+        <dc:description>Cette ontologie modélise le domaine médical en structurant les relations entre patients, professionnels de santé, maladies, symptômes et traitements. Elle vise à faciliter la représentation des connaissances médicales, l&apos;aide au diagnostic, et la détection d&apos;interactions médicamenteuses. L&apos;ontologie couvre les aspects principaux de la prise en charge médicale, des symptômes initiaux jusqu&apos;aux traitements, en passant par les diagnostics et les dossiers médicaux. Conçue pour les applications de santé numérique, elle permet l&apos;interrogation par requêtes SPARQL et l&apos;inférence automatique via les règles SWRL</dc:description>
+        <rdfs:label>Ontologie du Domaine Médical</rdfs:label>
+    </Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/creator -->
+
+    <AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/creator"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/date -->
+
+    <AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/date"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/description -->
+
+    <AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/description"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#aPourAllergieA -->
+
+    <ObjectProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#aPourAllergieA">
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Patient"/>
+        <rdfs:range rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Medicament"/>
+        <rdfs:comment>Relation entre un patient et un médicament auquel il est allergique@fr</rdfs:comment>
+        <rdfs:label>a pour allergie à@fr</rdfs:label>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#aPourSymptome -->
+
+    <ObjectProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#aPourSymptome">
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Patient"/>
+        <rdfs:range rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Symptome"/>
+        <rdfs:comment>Relation entre un patient et un symptôme qu&apos;il présente@fr</rdfs:comment>
+        <rdfs:label>a pour symptôme@fr</rdfs:label>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#administre -->
+
+    <ObjectProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#administre">
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/ont.owl#ProfessionnelMedical"/>
+        <rdfs:range rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Traitement"/>
+        <rdfs:comment>Relation entre un professionnel médical et un traitement qu'il administre@fr</rdfs:comment>
+        <rdfs:label>administre@fr</rdfs:label>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#cause -->
+
+    <ObjectProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#cause">
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Maladie"/>
+        <rdfs:range rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Symptome"/>
+        <rdfs:comment>Relation entre une maladie et un symptôme qu&apos;elle provoque@fr</rdfs:comment>
+        <rdfs:label>cause@fr</rdfs:label>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#contreIndiquePour -->
+
+    <ObjectProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#contreIndiquePour">
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Medicament"/>
+        <rdfs:range rdf:resource="http://www.co-ode.org/ontologies/ont.owl#ConditionMedicale"/>
+        <rdfs:comment>Relation entre un médicament et une condition médicale pour laquelle il ne doit pas être utilisé@fr</rdfs:comment>
+        <rdfs:label>contre-indiqué pour@fr</rdfs:label>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#diagnostiqueAvec -->
+
+    <ObjectProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#diagnostiqueAvec">
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Patient"/>
+        <rdfs:range rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Maladie"/>
+        <rdfs:comment>Relation entre un patient et une maladie qui lui a été diagnostiquée@fr</rdfs:comment>
+        <rdfs:label>diagnostiqué avec@fr</rdfs:label>
+    </ObjectProperty>
+    
+    
+    <!-- http://www.co-ode.org/ontologies/ont.owl#estResponsableDe -->
+
+    <ObjectProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#estResponsableDe">
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Medecin"/>
+        <rdfs:range rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Service"/>
+        <rdfs:comment>Relation entre un médecin et un service médical dont il est responsable@fr</rdfs:comment>
+        <rdfs:label>est responsable de@fr</rdfs:label>
+    </ObjectProperty>
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#faitPartieDe -->
+
+    <ObjectProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#faitPartieDe">
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/ont.owl#TestLaboratoire"/>
+        <rdfs:range rdf:resource="http://www.co-ode.org/ontologies/ont.owl#DossierMedical"/>
+        <rdfs:comment>Relation entre un test et un dossier médical@fr</rdfs:comment>
+        <rdfs:label>fait partie de@fr</rdfs:label>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#prescrit -->
+
+    <ObjectProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#prescrit">
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Medecin"/>
+        <rdfs:range rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Traitement"/>
+        <rdfs:comment>Relation entre un médecin et un traitement qu&apos;il prescrit à un patient@fr</rdfs:comment>
+        <rdfs:label>prescrit@fr</rdfs:label>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#realiseePar -->
+
+    <ObjectProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#realiseePar">
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Chirurgie"/>
+        <rdfs:range rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Medecin"/>
+        <rdfs:comment>Relation entre une chirurgie et le chirurgien qui la réalise@fr</rdfs:comment>
+        <rdfs:label>réalisée par@fr</rdfs:label>
+    </ObjectProperty>
+    
+    
+    <!-- http://www.co-ode.org/ontologies/ont.owl#suiviPar -->
+
+    <ObjectProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#suiviPar">
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Traitement"/>
+        <rdfs:range rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Patient"/>
+        <rdfs:comment>Relation entre un traitement et le patient qui le suit@fr</rdfs:comment>
+        <rdfs:label>suivi par@fr</rdfs:label>
+    </ObjectProperty>
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#traite -->
+
+    <ObjectProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#traite">
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Traitement"/>
+        <rdfs:range rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Maladie"/>
+        <rdfs:comment>Relation entre un traitement et une maladie qu&apos;il soigne@fr</rdfs:comment>
+        <rdfs:label>traite@fr</rdfs:label>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#traitePar -->
+
+    <ObjectProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#traitePar">
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Patient"/>
+        <rdfs:range rdf:resource="http://www.co-ode.org/ontologies/ont.owl#ProfessionnelMedical"/>
+        <rdfs:comment>Relation entre un patient et le professionnel médical qui le traite@fr</rdfs:comment>
+        <rdfs:label>traité par@fr</rdfs:label>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#travailleDans -->
+
+    <ObjectProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#travailleDans">
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/ont.owl#ProfessionnelMedical"/>
+        <rdfs:range rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Etablissement"/>
+        <rdfs:comment>Relation entre un professionnel médical et l&apos;établissement où il exerce@fr</rdfs:comment>
+        <rdfs:label>travaille dans@fr</rdfs:label>
+    </ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#aAge -->
+
+    <DatatypeProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#aAge">
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Personne"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <rdfs:comment>Âge d'une personne en années@fr</rdfs:comment>
+        <rdfs:label>a âge@fr</rdfs:label>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#aDateDebut -->
+
+    <DatatypeProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#aDateDebut">
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Traitement"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+        <rdfs:comment>Date de début d'un traitement@fr</rdfs:comment>
+        <rdfs:label>a date de début@fr</rdfs:label>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#aDateFin -->
+
+    <DatatypeProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#aDateFin">
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Traitement"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+        <rdfs:comment>Date de fin prévue d'un traitement@fr</rdfs:comment>
+        <rdfs:label>a date de fin@fr</rdfs:label>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#aDateNaissance -->
+
+    <DatatypeProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#aDateNaissance">
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Personne"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+        <rdfs:comment>Date de naissance d'une personne@fr</rdfs:comment>
+        <rdfs:label>a date de naissance@fr</rdfs:label>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#aDosage -->
+
+    <DatatypeProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#aDosage">
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Medicament"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Dosage prescrit pour un médicament@fr</rdfs:comment>
+        <rdfs:label>a dosage@fr</rdfs:label>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#aFrequence -->
+
+    <DatatypeProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#aFrequence">
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Medicament"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Fréquence d'administration d'un médicament@fr</rdfs:comment>
+        <rdfs:label>a fréquence@fr</rdfs:label>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#aGroupeSanguin -->
+
+    <DatatypeProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#aGroupeSanguin">
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Patient"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Groupe sanguin d'un patient@fr</rdfs:comment>
+        <rdfs:label>a groupe sanguin@fr</rdfs:label>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#aNom -->
+
+    <DatatypeProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#aNom">
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Personne"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Nom d'une personne@fr</rdfs:comment>
+        <rdfs:label>a nom@fr</rdfs:label>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#aPoids -->
+
+    <DatatypeProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#aPoids">
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Patient"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:comment>Poids d'un patient en kilogrammes@fr</rdfs:comment>
+        <rdfs:label>a poids@fr</rdfs:label>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#aPrenom -->
+
+    <DatatypeProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#aPrenom">
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Personne"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Prénom d'une personne@fr</rdfs:comment>
+        <rdfs:label>a prénom@fr</rdfs:label>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#aTaille -->
+
+    <DatatypeProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#aTaille">
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Patient"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:comment>Taille d'un patient en centimètres@fr</rdfs:comment>
+        <rdfs:label>a taille@fr</rdfs:label>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#aTemperature -->
+
+    <DatatypeProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#aTemperature">
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Patient"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:comment>Température corporelle d'un patient en degrés Celsius@fr</rdfs:comment>
+        <rdfs:label>a température@fr</rdfs:label>
+    </DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Analgesique -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Analgesique">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Medicament"/>
+        <rdfs:comment>Médicament qui soulage la douleur@fr</rdfs:comment>
+        <rdfs:label>Analgésique@fr</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Antibiotique -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Antibiotique">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Medicament"/>
+        <rdfs:comment>Médicament utilisé pour traiter les infections bactériennes@fr</rdfs:comment>
+        <rdfs:label>Antibiotique@fr</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Cardiologue -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Cardiologue">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Specialiste"/>
+        <rdfs:comment>Médecin spécialisé dans le diagnostic et le traitement des maladies cardiaques@fr</rdfs:comment>
+        <rdfs:label>Cardiologue@fr</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Chirurgie -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Chirurgie">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Traitement"/>
+        <rdfs:comment>Traitement médical impliquant une intervention physique sur les tissus@fr</rdfs:comment>
+        <rdfs:label>Chirurgie@fr</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#ConditionMedicale -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#ConditionMedicale">
+        <rdfs:comment>État de santé ou pathologie affectant un patient@fr</rdfs:comment>
+        <rdfs:label>Condition Médicale@fr</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Diagnostic -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Diagnostic">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#DossierMedical"/>
+        <rdfs:comment>Identification d&apos;une maladie ou d&apos;une condition basée sur ses signes et symptômes@fr</rdfs:comment>
+        <rdfs:label>Diagnostic@fr</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#DossierMedical -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#DossierMedical">
+        <rdfs:comment>Document contenant les informations médicales d&apos;un patient@fr</rdfs:comment>
+        <rdfs:label>Dossier Médical@fr</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Douleur -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Douleur">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Symptome"/>
+        <rdfs:comment>Sensation désagréable causée par une stimulation nocive des terminaisons nerveuses@fr</rdfs:comment>
+        <rdfs:label>Douleur@fr</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Etablissement -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Etablissement">
+        <rdfs:comment>Structure où sont prodigués des soins médicaux@fr</rdfs:comment>
+        <rdfs:label>Etablissement de santé@fr</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Fatigue -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Fatigue">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Symptome"/>
+        <rdfs:comment>Sensation de manque d&apos;énergie, d&apos;épuisement ou de lassitude@fr</rdfs:comment>
+        <rdfs:label>Fatigue@fr</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Fievre -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Fievre">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Symptome"/>
+        <rdfs:comment>Élévation de la température corporelle au-dessus de la normale@fr</rdfs:comment>
+        <rdfs:label>Fièvre@fr</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Infirmier -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Infirmier">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#ProfessionnelMedical"/>
+        <rdfs:comment>Professionnel de santé qui fournit des soins aux patients sous la direction d&apos;un médecin@fr</rdfs:comment>
+        <rdfs:label>Infirmier@fr</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Maladie -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Maladie">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#ConditionMedicale"/>
+        <rdfs:comment>Condition médicale anormale affectant un organisme@fr</rdfs:comment>
+        <rdfs:label>Maladie@fr</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#MaladieAigue -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#MaladieAigue">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Maladie"/>
+        <rdfs:comment>Maladie qui apparaît soudainement et évolue rapidement@fr</rdfs:comment>
+        <rdfs:label>Maladie Aiguë@fr</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#MaladieChronique -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#MaladieChronique">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Maladie"/>
+        <rdfs:comment>Maladie de longue durée qui évolue généralement lentement@fr</rdfs:comment>
+        <rdfs:label>Maladie Chronique@fr</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#MaladieInfectieuse -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#MaladieInfectieuse">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Maladie"/>
+        <rdfs:comment>Maladie causée par des microorganismes pathogènes comme les bactéries, virus ou parasites@fr</rdfs:comment>
+        <rdfs:label>Maladie Infectieuse@fr</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Medecin -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Medecin">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#ProfessionnelMedical"/>
+        <rdfs:comment>Professionnel de santé autorisé à diagnostiquer des maladies et à prescrire des traitements@fr</rdfs:comment>
+        <rdfs:label>Médecin@fr</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#MedecinGeneraliste -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#MedecinGeneraliste">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Medecin"/>
+        <rdfs:comment>Médecin qui traite une variété de conditions médicales courantes et oriente vers des spécialistes si nécessaire@fr</rdfs:comment>
+        <rdfs:label>Médecin Généraliste@fr</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Medicament -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Medicament">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Traitement"/>
+        <rdfs:comment>Substance utilisée pour prévenir, diagnostiquer, traiter ou soulager des symptômes d&apos;une maladie@fr</rdfs:comment>
+        <rdfs:label>Médicament@fr</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Neurologue -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Neurologue">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Specialiste"/>
+        <rdfs:comment>Médecin spécialisé dans le diagnostic et le traitement des troubles du système nerveux@fr</rdfs:comment>
+        <rdfs:label>Neurologue@fr</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Patient -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Patient">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Personne"/>
+        <rdfs:comment>Personne qui reçoit ou est inscrite pour recevoir des soins médicaux@fr</rdfs:comment>
+        <rdfs:label>Patient@fr</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Pediatre -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Pediatre">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Specialiste"/>
+        <rdfs:comment>Médecin spécialisé dans les soins des enfants et adolescents@fr</rdfs:comment>
+        <rdfs:label>Pédiatre@fr</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Personne -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Personne">
+        <rdfs:comment>Un être humain dans le contexte médical@fr</rdfs:comment>
+        <rdfs:label>Personne@fr</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Pharmacien -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Pharmacien">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#ProfessionnelMedical"/>
+        <rdfs:comment>Professionnel de santé spécialisé dans la préparation et la distribution de médicaments@fr</rdfs:comment>
+        <rdfs:label>Pharmacien@fr</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Prescription -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Prescription">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#DossierMedical"/>
+        <rdfs:comment>Instruction écrite d&apos;un médecin autorisant un traitement@fr</rdfs:comment>
+        <rdfs:label>Prescription@fr</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#ProfessionnelMedical -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#ProfessionnelMedical">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Personne"/>
+        <rdfs:comment>Personne qualifiée pour fournir des soins de santé@fr</rdfs:comment>
+        <rdfs:label>Professionnel Médical@fr</rdfs:label>
+    </Class>
+    
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Service -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Service">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Etablissement"/>
+        <rdfs:comment>Unité fonctionnelle au sein d'un établissement de santé@fr</rdfs:comment>
+        <rdfs:label>Service médical@fr</rdfs:label>
+    </Class>
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Specialiste -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Specialiste">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Medecin"/>
+        <rdfs:comment>Médecin ayant une formation avancée dans un domaine médical spécifique@fr</rdfs:comment>
+        <rdfs:label>Médecin Spécialiste@fr</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Symptome -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Symptome">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#ConditionMedicale"/>
+        <rdfs:comment>Manifestation perceptible d&apos;une condition médicale@fr</rdfs:comment>
+        <rdfs:label>Symptôme@fr</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#TestLaboratoire -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#TestLaboratoire">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#DossierMedical"/>
+        <rdfs:comment>Procédure médicale qui implique l&apos;analyse d&apos;échantillons biologiques@fr</rdfs:comment>
+        <rdfs:label>Test de Laboratoire@fr</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Therapie -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Therapie">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Traitement"/>
+        <rdfs:comment>Traitement visant à soulager ou guérir un trouble, une maladie ou une blessure@fr</rdfs:comment>
+        <rdfs:label>Thérapie@fr</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Traitement -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Traitement">
+        <rdfs:comment>Intervention médicale visant à soigner ou soulager une condition médicale@fr</rdfs:comment>
+        <rdfs:label>Traitement@fr</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Vaccin -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Vaccin">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Medicament"/>
+        <rdfs:comment>Préparation biologique qui stimule l&apos;immunité contre une maladie spécifique@fr</rdfs:comment>
+        <rdfs:label>Vaccin@fr</rdfs:label>
+    </Class>
+</rdf:RDF>
