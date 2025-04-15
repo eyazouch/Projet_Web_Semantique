@@ -1,0 +1,216 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.w3.org/2002/07/owl"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:med="med:http://www.ontologie-medicale.fr/onto#*"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:ont="http://www.co-ode.org/ontologies/ont.owl#">
+    
+    <!-- Importation de l'ontologie principale -->
+    <Ontology>
+        <imports rdf:resource="file:./Ontologie-medicale.rdf"/>
+        <dc:creator>Eya</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-04-15T00:00:00</dc:date>
+        <dc:description>Instances pour l'ontologie médicale</dc:description>
+        <rdfs:label>Instances pour l'ontologie du Domaine Médical</rdfs:label>
+    </Ontology>
+    
+    <!-- Instances de Patients -->
+    <ont:Patient rdf:about="http://www.co-ode.org/ontologies/ont.owl#patient_001">
+        <ont:aNom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dupont</ont:aNom>
+        <ont:aPrenom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jean</ont:aPrenom>
+        <ont:aAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">45</ont:aAge>
+        <ont:aDateNaissance rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1980-05-15T00:00:00</ont:aDateNaissance>
+        <ont:aPoids rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">75.5</ont:aPoids>
+        <ont:aTaille rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">175.0</ont:aTaille>
+        <ont:aTemperature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">38.5</ont:aTemperature>
+        <ont:aGroupeSanguin rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A+</ont:aGroupeSanguin>
+        <ont:aPourSymptome rdf:resource="http://www.co-ode.org/ontologies/ont.owl#symptome_fievre_01"/>
+        <ont:aPourSymptome rdf:resource="http://www.co-ode.org/ontologies/ont.owl#symptome_douleur_01"/>
+        <ont:aPourAllergieA rdf:resource="http://www.co-ode.org/ontologies/ont.owl#medicament_penicilline"/>
+        <ont:diagnostiqueAvec rdf:resource="http://www.co-ode.org/ontologies/ont.owl#maladie_grippe"/>
+        <ont:traitePar rdf:resource="http://www.co-ode.org/ontologies/ont.owl#medecin_01"/>
+    </ont:Patient>
+
+    <ont:Patient rdf:about="http://www.co-ode.org/ontologies/ont.owl#patient_002">
+        <ont:aNom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Martin</ont:aNom>
+        <ont:aPrenom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sophie</ont:aPrenom>
+        <ont:aAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">32</ont:aAge>
+        <ont:aDateNaissance rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1993-09-21T00:00:00</ont:aDateNaissance>
+        <ont:aPoids rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">62.0</ont:aPoids>
+        <ont:aTaille rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">168.0</ont:aTaille>
+        <ont:aTemperature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">36.8</ont:aTemperature>
+        <ont:aGroupeSanguin rdf:datatype="http://www.w3.org/2001/XMLSchema#string">O-</ont:aGroupeSanguin>
+        <ont:aPourSymptome rdf:resource="http://www.co-ode.org/ontologies/ont.owl#symptome_fatigue_01"/>
+        <ont:diagnostiqueAvec rdf:resource="http://www.co-ode.org/ontologies/ont.owl#maladie_diabete"/>
+        <ont:traitePar rdf:resource="http://www.co-ode.org/ontologies/ont.owl#medecin_03"/>
+    </ont:Patient>
+
+    <ont:Patient rdf:about="http://www.co-ode.org/ontologies/ont.owl#patient_003">
+        <ont:aNom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Petit</ont:aNom>
+        <ont:aPrenom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lucas</ont:aPrenom>
+        <ont:aAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">12</ont:aAge>
+        <ont:aDateNaissance rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2013-03-10T00:00:00</ont:aDateNaissance>
+        <ont:aPoids rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">40.0</ont:aPoids>
+        <ont:aTaille rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">145.0</ont:aTaille>
+        <ont:aTemperature rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">37.2</ont:aTemperature>
+        <ont:aGroupeSanguin rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A-</ont:aGroupeSanguin>
+        <ont:aPourSymptome rdf:resource="http://www.co-ode.org/ontologies/ont.owl#symptome_douleur_02"/>
+        <ont:traitePar rdf:resource="http://www.co-ode.org/ontologies/ont.owl#medecin_02"/>
+    </ont:Patient>
+
+    <!-- Instances de Professionnels Médicaux -->
+    <ont:MedecinGeneraliste rdf:about="http://www.co-ode.org/ontologies/ont.owl#medecin_01">
+        <ont:aNom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rousseau</ont:aNom>
+        <ont:aPrenom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pierre</ont:aPrenom>
+        <ont:aAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">52</ont:aAge>
+        <ont:travailleDans rdf:resource="http://www.co-ode.org/ontologies/ont.owl#hopital_01"/>
+        <ont:prescrit rdf:resource="http://www.co-ode.org/ontologies/ont.owl#traitement_paracetamol"/>
+    </ont:MedecinGeneraliste>
+
+    <ont:Pediatre rdf:about="http://www.co-ode.org/ontologies/ont.owl#medecin_02">
+        <ont:aNom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dubois</ont:aNom>
+        <ont:aPrenom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Marie</ont:aPrenom>
+        <ont:aAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">45</ont:aAge>
+        <ont:travailleDans rdf:resource="http://www.co-ode.org/ontologies/ont.owl#hopital_01"/>
+        <ont:estResponsableDe rdf:resource="http://www.co-ode.org/ontologies/ont.owl#service_pediatrie"/>
+        <ont:prescrit rdf:resource="http://www.co-ode.org/ontologies/ont.owl#traitement_sirop"/>
+    </ont:Pediatre>
+
+    <ont:Cardiologue rdf:about="http://www.co-ode.org/ontologies/ont.owl#medecin_03">
+        <ont:aNom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Moreau</ont:aNom>
+        <ont:aPrenom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Philippe</ont:aPrenom>
+        <ont:aAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">58</ont:aAge>
+        <ont:travailleDans rdf:resource="http://www.co-ode.org/ontologies/ont.owl#clinique_01"/>
+        <ont:prescrit rdf:resource="http://www.co-ode.org/ontologies/ont.owl#traitement_insuline"/>
+    </ont:Cardiologue>
+
+    <ont:Infirmier rdf:about="http://www.co-ode.org/ontologies/ont.owl#infirmier_01">
+        <ont:aNom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Leroy</ont:aNom>
+        <ont:aPrenom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Julie</ont:aPrenom>
+        <ont:aAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">34</ont:aAge>
+        <ont:travailleDans rdf:resource="http://www.co-ode.org/ontologies/ont.owl#hopital_01"/>
+        <ont:administre rdf:resource="http://www.co-ode.org/ontologies/ont.owl#traitement_paracetamol"/>
+    </ont:Infirmier>
+
+    <ont:Pharmacien rdf:about="http://www.co-ode.org/ontologies/ont.owl#pharmacien_01">
+        <ont:aNom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bernard</ont:aNom>
+        <ont:aPrenom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Thomas</ont:aPrenom>
+        <ont:aAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">41</ont:aAge>
+        <ont:travailleDans rdf:resource="http://www.co-ode.org/ontologies/ont.owl#pharmacie_01"/>
+    </ont:Pharmacien>
+
+    <!-- Instances d'Établissements -->
+    <ont:Etablissement rdf:about="http://www.co-ode.org/ontologies/ont.owl#hopital_01">
+        <rdfs:label>Hôpital Saint-Joseph</rdfs:label>
+    </ont:Etablissement>
+
+    <ont:Etablissement rdf:about="http://www.co-ode.org/ontologies/ont.owl#clinique_01">
+        <rdfs:label>Clinique du Parc</rdfs:label>
+    </ont:Etablissement>
+
+    <ont:Etablissement rdf:about="http://www.co-ode.org/ontologies/ont.owl#pharmacie_01">
+        <rdfs:label>Pharmacie Centrale</rdfs:label>
+    </ont:Etablissement>
+
+    <!-- Instances de Services -->
+    <ont:Service rdf:about="http://www.co-ode.org/ontologies/ont.owl#service_pediatrie">
+        <rdfs:label>Service de Pédiatrie</rdfs:label>
+    </ont:Service>
+
+    <ont:Service rdf:about="http://www.co-ode.org/ontologies/ont.owl#service_cardiologie">
+        <rdfs:label>Service de Cardiologie</rdfs:label>
+    </ont:Service>
+
+    <!-- Instances de Symptômes -->
+    <ont:Fievre rdf:about="http://www.co-ode.org/ontologies/ont.owl#symptome_fievre_01">
+        <rdfs:label>Fièvre élevée</rdfs:label>
+    </ont:Fievre>
+
+    <ont:Douleur rdf:about="http://www.co-ode.org/ontologies/ont.owl#symptome_douleur_01">
+        <rdfs:label>Douleur thoracique</rdfs:label>
+    </ont:Douleur>
+
+    <ont:Douleur rdf:about="http://www.co-ode.org/ontologies/ont.owl#symptome_douleur_02">
+        <rdfs:label>Douleur abdominale</rdfs:label>
+    </ont:Douleur>
+
+    <ont:Fatigue rdf:about="http://www.co-ode.org/ontologies/ont.owl#symptome_fatigue_01">
+        <rdfs:label>Fatigue chronique</rdfs:label>
+    </ont:Fatigue>
+
+    <!-- Instances de Maladies -->
+    <ont:MaladieInfectieuse rdf:about="http://www.co-ode.org/ontologies/ont.owl#maladie_grippe">
+        <rdfs:label>Grippe</rdfs:label>
+        <ont:cause rdf:resource="http://www.co-ode.org/ontologies/ont.owl#symptome_fievre_01"/>
+        <ont:cause rdf:resource="http://www.co-ode.org/ontologies/ont.owl#symptome_fatigue_01"/>
+    </ont:MaladieInfectieuse>
+
+    <ont:MaladieChronique rdf:about="http://www.co-ode.org/ontologies/ont.owl#maladie_diabete">
+        <rdfs:label>Diabète de type 2</rdfs:label>
+        <ont:cause rdf:resource="http://www.co-ode.org/ontologies/ont.owl#symptome_fatigue_01"/>
+    </ont:MaladieChronique>
+
+    <!-- Instances de Médicaments -->
+    <ont:Analgesique rdf:about="http://www.co-ode.org/ontologies/ont.owl#medicament_paracetamol">
+        <rdfs:label>Paracétamol</rdfs:label>
+        <ont:aDosage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">500mg</ont:aDosage>
+        <ont:aFrequence rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3 fois par jour</ont:aFrequence>
+    </ont:Analgesique>
+
+    <ont:Antibiotique rdf:about="http://www.co-ode.org/ontologies/ont.owl#medicament_penicilline">
+        <rdfs:label>Pénicilline</rdfs:label>
+        <ont:aDosage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">250mg</ont:aDosage>
+        <ont:aFrequence rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2 fois par jour</ont:aFrequence>
+        <ont:contreIndiquePour rdf:resource="http://www.co-ode.org/ontologies/ont.owl#patient_001"/>
+    </ont:Antibiotique>
+
+    <!-- Instances de Traitements -->
+    <ont:Medicament rdf:about="http://www.co-ode.org/ontologies/ont.owl#traitement_paracetamol">
+        <rdfs:label>Traitement au Paracétamol</rdfs:label>
+        <ont:aDateDebut rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-04-10T00:00:00</ont:aDateDebut>
+        <ont:aDateFin rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-04-17T00:00:00</ont:aDateFin>
+        <ont:suiviPar rdf:resource="http://www.co-ode.org/ontologies/ont.owl#patient_001"/>
+        <ont:traite rdf:resource="http://www.co-ode.org/ontologies/ont.owl#maladie_grippe"/>
+    </ont:Medicament>
+
+    <ont:Medicament rdf:about="http://www.co-ode.org/ontologies/ont.owl#traitement_insuline">
+        <rdfs:label>Traitement à l'Insuline</rdfs:label>
+        <ont:aDateDebut rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-03-05T00:00:00</ont:aDateDebut>
+        <ont:suiviPar rdf:resource="http://www.co-ode.org/ontologies/ont.owl#patient_002"/>
+        <ont:traite rdf:resource="http://www.co-ode.org/ontologies/ont.owl#maladie_diabete"/>
+    </ont:Medicament>
+
+    <ont:Medicament rdf:about="http://www.co-ode.org/ontologies/ont.owl#traitement_sirop">
+        <rdfs:label>Sirop pour la toux</rdfs:label>
+        <ont:aDateDebut rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-04-12T00:00:00</ont:aDateDebut>
+        <ont:aDateFin rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-04-19T00:00:00</ont:aDateFin>
+        <ont:suiviPar rdf:resource="http://www.co-ode.org/ontologies/ont.owl#patient_003"/>
+    </ont:Medicament>
+
+    <!-- Instances de Dossiers Médicaux -->
+    <ont:DossierMedical rdf:about="http://www.co-ode.org/ontologies/ont.owl#dossier_001">
+        <rdfs:label>Dossier médical de Jean Dupont</rdfs:label>
+    </ont:DossierMedical>
+
+    <ont:TestLaboratoire rdf:about="http://www.co-ode.org/ontologies/ont.owl#test_sang_01">
+        <rdfs:label>Analyse sanguine</rdfs:label>
+        <ont:faitPartieDe rdf:resource="http://www.co-ode.org/ontologies/ont.owl#dossier_001"/>
+    </ont:TestLaboratoire>
+
+    <ont:Prescription rdf:about="http://www.co-ode.org/ontologies/ont.owl#prescription_01">
+        <rdfs:label>Prescription médicale</rdfs:label>
+    </ont:Prescription>
+
+    <!-- Instances de Chirurgies -->
+    <ont:Chirurgie rdf:about="http://www.co-ode.org/ontologies/ont.owl#chirurgie_01">
+        <rdfs:label>Appendicectomie</rdfs:label>
+        <ont:realiseePar rdf:resource="http://www.co-ode.org/ontologies/ont.owl#medecin_03"/>
+    </ont:Chirurgie>
+</rdf:RDF>
