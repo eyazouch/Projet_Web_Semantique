@@ -1,0 +1,1555 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.ontologie-medicale.fr/onto#"
+     xml:base="http://www.ontologie-medicale.fr/onto"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:med="http://www.ontologie-medicale.fr/onto#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:fhir="http://hl7.org/fhir/"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:schema="http://schema.org/">
+    <owl:Ontology rdf:about="http://www.ontologie-medicale.fr/onto#">
+        <dc:creator>Eya</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-04-08T00:00:00</dc:date>
+        <dc:description xml:lang="fr">Cette ontologie modélise le domaine médical en structurant les relations entre patients, professionnels de santé, maladies, symptômes et traitements. 
+    Elle vise à faciliter la représentation des connaissances médicales, l&apos;aide au diagnostic, et la détection d&apos;interactions médicamenteuses. 
+    L&apos;ontologie couvre les aspects principaux de la prise en charge médicale, des symptômes initiaux jusqu&apos;aux traitements, en passant par les diagnostics et les dossiers médicaux. 
+    Conçue pour les applications de santé numérique, elle permet l&apos;interrogation par requêtes SPARQL et l&apos;inférence automatique via les règles SWRL</dc:description>
+        <rdfs:label xml:lang="fr">Ontologie du Domaine Médical</rdfs:label>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/creator -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/creator"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/date -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/date"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/description -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/description"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- _:genid-nodeid-node1iqjbqd6ox14 -->
+
+    <owl:ObjectProperty rdf:about="_:genid-nodeid-node1iqjbqd6ox14"/>
+    <rdf:Description>
+        <owl:inverseOf rdf:resource="_:genid-nodeid-node1iqjbqd6ox14"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologie-medicale.fr/onto#specialiseDans"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#aAntecedentDe -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologie-medicale.fr/onto#aAntecedentDe">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Patient"/>
+        <rdfs:range rdf:resource="http://www.ontologie-medicale.fr/onto#Maladie"/>
+        <rdfs:comment xml:lang="fr">Relation entre un patient et une maladie qu&apos;il a eue par le passé</rdfs:comment>
+        <rdfs:label xml:lang="fr">a antécédent de</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#aPourAllergieA -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologie-medicale.fr/onto#aPourAllergieA">
+        <owl:inverseOf rdf:resource="http://www.ontologie-medicale.fr/onto#allergeneChez"/>
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Patient"/>
+        <rdfs:range rdf:resource="http://www.ontologie-medicale.fr/onto#Medicament"/>
+        <rdfs:comment xml:lang="fr">Relation entre un patient et un médicament auquel il est allergique</rdfs:comment>
+        <rdfs:label xml:lang="fr">a pour allergie à</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#aPourResponsable -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologie-medicale.fr/onto#aPourResponsable">
+        <owl:inverseOf rdf:resource="http://www.ontologie-medicale.fr/onto#estResponsableDe"/>
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Service"/>
+        <rdfs:range rdf:resource="http://www.ontologie-medicale.fr/onto#Medecin"/>
+        <rdfs:comment xml:lang="fr">Relation entre un service médical et le médecin qui en est responsable</rdfs:comment>
+        <rdfs:label xml:lang="fr">a pour responsable</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#aPourSymptome -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologie-medicale.fr/onto#aPourSymptome">
+        <owl:inverseOf rdf:resource="http://www.ontologie-medicale.fr/onto#observeChezPatient"/>
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Patient"/>
+        <rdfs:range rdf:resource="http://www.ontologie-medicale.fr/onto#Symptome"/>
+        <rdfs:comment xml:lang="fr">Relation entre un patient et un symptôme qu&apos;il présente</rdfs:comment>
+        <rdfs:label xml:lang="fr">a pour symptôme</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#administre -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologie-medicale.fr/onto#administre">
+        <owl:inverseOf rdf:resource="http://www.ontologie-medicale.fr/onto#administrePar"/>
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#ProfessionnelMedical"/>
+        <rdfs:range rdf:resource="http://www.ontologie-medicale.fr/onto#Traitement"/>
+        <rdfs:comment xml:lang="fr">Relation entre un professionnel médical et un traitement qu&apos;il administre</rdfs:comment>
+        <rdfs:label xml:lang="fr">administre</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#administrePar -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologie-medicale.fr/onto#administrePar">
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Traitement"/>
+        <rdfs:range rdf:resource="http://www.ontologie-medicale.fr/onto#ProfessionnelMedical"/>
+        <rdfs:comment xml:lang="fr">Relation entre un traitement et le professionnel médical qui l&apos;administre</rdfs:comment>
+        <rdfs:label xml:lang="fr">administré par</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#allergeneChez -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologie-medicale.fr/onto#allergeneChez">
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Medicament"/>
+        <rdfs:range rdf:resource="http://www.ontologie-medicale.fr/onto#Patient"/>
+        <rdfs:comment xml:lang="fr">Relation entre un médicament et un patient pour lequel il est un allergène</rdfs:comment>
+        <rdfs:label xml:lang="fr">allergène chez</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#cause -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologie-medicale.fr/onto#cause">
+        <owl:inverseOf rdf:resource="http://www.ontologie-medicale.fr/onto#causePar"/>
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Maladie"/>
+        <rdfs:range rdf:resource="http://www.ontologie-medicale.fr/onto#Symptome"/>
+        <rdfs:comment xml:lang="fr">Relation entre une maladie et un symptôme qu&apos;elle provoque</rdfs:comment>
+        <rdfs:label xml:lang="fr">cause</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#causePar -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologie-medicale.fr/onto#causePar">
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Symptome"/>
+        <rdfs:range rdf:resource="http://www.ontologie-medicale.fr/onto#Maladie"/>
+        <rdfs:comment xml:lang="fr">Relation entre un symptôme et la maladie qui le provoque</rdfs:comment>
+        <rdfs:label xml:lang="fr">causé par</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#contreIndication -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologie-medicale.fr/onto#contreIndication">
+        <owl:inverseOf rdf:resource="http://www.ontologie-medicale.fr/onto#contreIndiquePour"/>
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#ConditionMedicale"/>
+        <rdfs:range rdf:resource="http://www.ontologie-medicale.fr/onto#Medicament"/>
+        <rdfs:comment xml:lang="fr">Relation entre une condition médicale et un médicament qui est contre-indiqué pour elle</rdfs:comment>
+        <rdfs:label xml:lang="fr">contre-indication</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#contreIndiquePour -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologie-medicale.fr/onto#contreIndiquePour">
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Medicament"/>
+        <rdfs:range rdf:resource="http://www.ontologie-medicale.fr/onto#ConditionMedicale"/>
+        <rdfs:comment xml:lang="fr">Relation entre un médicament et une condition médicale pour laquelle il ne doit pas être utilisé</rdfs:comment>
+        <rdfs:label xml:lang="fr">contre-indiqué pour</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#diagnostiqueAvec -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologie-medicale.fr/onto#diagnostiqueAvec">
+        <owl:inverseOf rdf:resource="http://www.ontologie-medicale.fr/onto#diagnostiqueePour"/>
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Patient"/>
+        <rdfs:range rdf:resource="http://www.ontologie-medicale.fr/onto#Maladie"/>
+        <rdfs:comment xml:lang="fr">Relation entre un patient et une maladie qui lui a été diagnostiquée</rdfs:comment>
+        <rdfs:label xml:lang="fr">diagnostiqué avec</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#diagnostiqueePour -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologie-medicale.fr/onto#diagnostiqueePour">
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Maladie"/>
+        <rdfs:range rdf:resource="http://www.ontologie-medicale.fr/onto#Patient"/>
+        <rdfs:comment xml:lang="fr">Relation entre une maladie et le patient pour qui elle a été diagnostiquée</rdfs:comment>
+        <rdfs:label xml:lang="fr">diagnostiquée pour</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#emploie -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologie-medicale.fr/onto#emploie">
+        <owl:inverseOf rdf:resource="http://www.ontologie-medicale.fr/onto#travailleDans"/>
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Etablissement"/>
+        <rdfs:range rdf:resource="http://www.ontologie-medicale.fr/onto#ProfessionnelMedical"/>
+        <rdfs:comment xml:lang="fr">Relation entre un établissement et un professionnel médical qui y travaille</rdfs:comment>
+        <rdfs:label xml:lang="fr">emploie</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#estCompatibleAvec -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologie-medicale.fr/onto#estCompatibleAvec">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Medicament"/>
+        <rdfs:range rdf:resource="http://www.ontologie-medicale.fr/onto#Medicament"/>
+        <rdfs:comment xml:lang="fr">Relation entre deux médicaments qui peuvent être pris ensemble</rdfs:comment>
+        <rdfs:label xml:lang="fr">est compatible avec</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#estIncompatibleAvec -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologie-medicale.fr/onto#estIncompatibleAvec">
+        <owl:inverseOf rdf:resource="http://www.ontologie-medicale.fr/onto#estIncompatibleAvec"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Medicament"/>
+        <rdfs:range rdf:resource="http://www.ontologie-medicale.fr/onto#Medicament"/>
+        <rdfs:comment xml:lang="fr">Relation entre deux médicaments qui ne peuvent pas être pris ensemble</rdfs:comment>
+        <rdfs:label xml:lang="fr">est incompatible avec</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#estResponsableDe -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologie-medicale.fr/onto#estResponsableDe">
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Medecin"/>
+        <rdfs:range rdf:resource="http://www.ontologie-medicale.fr/onto#Service"/>
+        <rdfs:comment xml:lang="fr">Relation entre un médecin et un service médical dont il est responsable</rdfs:comment>
+        <rdfs:label xml:lang="fr">est responsable de</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#faitPartieDe -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologie-medicale.fr/onto#faitPartieDe">
+        <owl:inverseOf rdf:resource="http://www.ontologie-medicale.fr/onto#inclut"/>
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#TestLaboratoire"/>
+        <rdfs:range rdf:resource="http://www.ontologie-medicale.fr/onto#DossierMedical"/>
+        <rdfs:comment xml:lang="fr">Relation entre un test et un dossier médical</rdfs:comment>
+        <rdfs:label xml:lang="fr">fait partie de</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#inclut -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologie-medicale.fr/onto#inclut">
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#DossierMedical"/>
+        <rdfs:range rdf:resource="http://www.ontologie-medicale.fr/onto#TestLaboratoire"/>
+        <rdfs:comment xml:lang="fr">Relation entre un dossier médical et un test qu&apos;il inclut</rdfs:comment>
+        <rdfs:label xml:lang="fr">inclut</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#observeChezPatient -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologie-medicale.fr/onto#observeChezPatient">
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Symptome"/>
+        <rdfs:range rdf:resource="http://www.ontologie-medicale.fr/onto#Patient"/>
+        <rdfs:comment xml:lang="fr">Relation entre un symptôme et le patient chez qui il est observé</rdfs:comment>
+        <rdfs:label xml:lang="fr">observé chez patient</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#prescrit -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologie-medicale.fr/onto#prescrit">
+        <owl:inverseOf rdf:resource="http://www.ontologie-medicale.fr/onto#prescritPar"/>
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Medecin"/>
+        <rdfs:range rdf:resource="http://www.ontologie-medicale.fr/onto#Traitement"/>
+        <rdfs:comment xml:lang="fr">Relation entre un médecin et un traitement qu&apos;il prescrit à un patient</rdfs:comment>
+        <rdfs:label xml:lang="fr">prescrit</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#prescritPar -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologie-medicale.fr/onto#prescritPar">
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Traitement"/>
+        <rdfs:range rdf:resource="http://www.ontologie-medicale.fr/onto#Medecin"/>
+        <rdfs:comment xml:lang="fr">Relation entre un traitement et le médecin qui l&apos;a prescrit</rdfs:comment>
+        <rdfs:label xml:lang="fr">prescrit par</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#realise -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologie-medicale.fr/onto#realise">
+        <owl:inverseOf rdf:resource="http://www.ontologie-medicale.fr/onto#realiseePar"/>
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Medecin"/>
+        <rdfs:range rdf:resource="http://www.ontologie-medicale.fr/onto#Chirurgie"/>
+        <rdfs:comment xml:lang="fr">Relation entre un médecin et une chirurgie qu&apos;il réalise</rdfs:comment>
+        <rdfs:label xml:lang="fr">réalise</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#realiseePar -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologie-medicale.fr/onto#realiseePar">
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Chirurgie"/>
+        <rdfs:range rdf:resource="http://www.ontologie-medicale.fr/onto#Medecin"/>
+        <rdfs:comment xml:lang="fr">Relation entre une chirurgie et le chirurgien qui la réalise</rdfs:comment>
+        <rdfs:label xml:lang="fr">réalisée par</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#specialiseDans -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologie-medicale.fr/onto#specialiseDans">
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Medecin"/>
+        <rdfs:range rdf:resource="http://www.ontologie-medicale.fr/onto#Maladie"/>
+        <rdfs:comment xml:lang="fr">Relation entre un médecin et une maladie dans laquelle il est spécialisé</rdfs:comment>
+        <rdfs:label xml:lang="fr">spécialisé dans</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#suit -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologie-medicale.fr/onto#suit">
+        <owl:inverseOf rdf:resource="http://www.ontologie-medicale.fr/onto#suiviPar"/>
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Patient"/>
+        <rdfs:range rdf:resource="http://www.ontologie-medicale.fr/onto#Traitement"/>
+        <rdfs:comment xml:lang="fr">Relation entre un patient et un traitement qu&apos;il suit</rdfs:comment>
+        <rdfs:label xml:lang="fr">suit</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#suiviPar -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologie-medicale.fr/onto#suiviPar">
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Traitement"/>
+        <rdfs:range rdf:resource="http://www.ontologie-medicale.fr/onto#Patient"/>
+        <rdfs:comment xml:lang="fr">Relation entre un traitement et le patient qui le suit</rdfs:comment>
+        <rdfs:label xml:lang="fr">suivi par</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#traite -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologie-medicale.fr/onto#traite">
+        <owl:inverseOf rdf:resource="http://www.ontologie-medicale.fr/onto#traitePar_traitement"/>
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Traitement"/>
+        <rdfs:range rdf:resource="http://www.ontologie-medicale.fr/onto#Maladie"/>
+        <rdfs:comment xml:lang="fr">Relation entre un traitement et une maladie qu&apos;il soigne</rdfs:comment>
+        <rdfs:label xml:lang="fr">traite</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#traitePar -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologie-medicale.fr/onto#traitePar">
+        <owl:inverseOf rdf:resource="http://www.ontologie-medicale.fr/onto#traite_patient"/>
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Patient"/>
+        <rdfs:range rdf:resource="http://www.ontologie-medicale.fr/onto#ProfessionnelMedical"/>
+        <rdfs:comment xml:lang="fr">Relation entre un patient et le professionnel médical qui le traite</rdfs:comment>
+        <rdfs:label xml:lang="fr">traité par</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#traitePar_traitement -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologie-medicale.fr/onto#traitePar_traitement">
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Maladie"/>
+        <rdfs:range rdf:resource="http://www.ontologie-medicale.fr/onto#Traitement"/>
+        <rdfs:comment xml:lang="fr">Relation entre une maladie et un traitement qui la soigne</rdfs:comment>
+        <rdfs:label xml:lang="fr">traitée par</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#traite_patient -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologie-medicale.fr/onto#traite_patient">
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#ProfessionnelMedical"/>
+        <rdfs:range rdf:resource="http://www.ontologie-medicale.fr/onto#Patient"/>
+        <rdfs:comment xml:lang="fr">Relation entre un professionnel médical et le patient qu&apos;il traite</rdfs:comment>
+        <rdfs:label xml:lang="fr">traite patient</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#travailleDans -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologie-medicale.fr/onto#travailleDans">
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#ProfessionnelMedical"/>
+        <rdfs:range rdf:resource="http://www.ontologie-medicale.fr/onto#Etablissement"/>
+        <rdfs:comment xml:lang="fr">Relation entre un professionnel médical et l&apos;établissement où il exerce</rdfs:comment>
+        <rdfs:label xml:lang="fr">travaille dans</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#aAge -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ontologie-medicale.fr/onto#aAge">
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Personne"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <rdfs:comment xml:lang="fr">Âge d&apos;une personne en années</rdfs:comment>
+        <rdfs:label xml:lang="fr">a âge</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#aDateDebut -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ontologie-medicale.fr/onto#aDateDebut">
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Traitement"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+        <rdfs:comment xml:lang="fr">Date de début d&apos;un traitement</rdfs:comment>
+        <rdfs:label xml:lang="fr">a date de début</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#aDateFin -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ontologie-medicale.fr/onto#aDateFin">
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Traitement"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+        <rdfs:comment xml:lang="fr">Date de fin prévue d&apos;un traitement</rdfs:comment>
+        <rdfs:label xml:lang="fr">a date de fin</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#aDateNaissance -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ontologie-medicale.fr/onto#aDateNaissance">
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Personne"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+        <rdfs:comment xml:lang="fr">Date de naissance d&apos;une personne</rdfs:comment>
+        <rdfs:label xml:lang="fr">a date de naissance</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#aDosage -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ontologie-medicale.fr/onto#aDosage">
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Medicament"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment xml:lang="fr">Dosage prescrit pour un médicament</rdfs:comment>
+        <rdfs:label xml:lang="fr">a dosage</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#aFrequence -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ontologie-medicale.fr/onto#aFrequence">
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Medicament"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment xml:lang="fr">Fréquence d&apos;administration d&apos;un médicament</rdfs:comment>
+        <rdfs:label xml:lang="fr">a fréquence</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#aGroupeSanguin -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ontologie-medicale.fr/onto#aGroupeSanguin">
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Patient"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment xml:lang="fr">Groupe sanguin d&apos;un patient</rdfs:comment>
+        <rdfs:label xml:lang="fr">a groupe sanguin</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#aNom -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ontologie-medicale.fr/onto#aNom">
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Personne"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment xml:lang="fr">Nom d&apos;une personne</rdfs:comment>
+        <rdfs:label xml:lang="fr">a nom</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#aPoids -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ontologie-medicale.fr/onto#aPoids">
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Patient"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:comment xml:lang="fr">Poids d&apos;un patient en kilogrammes</rdfs:comment>
+        <rdfs:label xml:lang="fr">a poids</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#aPrenom -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ontologie-medicale.fr/onto#aPrenom">
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Personne"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment xml:lang="fr">Prénom d&apos;une personne</rdfs:comment>
+        <rdfs:label xml:lang="fr">a prénom</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#aTaille -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ontologie-medicale.fr/onto#aTaille">
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Patient"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:comment xml:lang="fr">Taille d&apos;un patient en centimètres</rdfs:comment>
+        <rdfs:label xml:lang="fr">a taille</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#aTemperature -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ontologie-medicale.fr/onto#aTemperature">
+        <rdfs:domain rdf:resource="http://www.ontologie-medicale.fr/onto#Patient"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:comment xml:lang="fr">Température corporelle d&apos;un patient en degrés Celsius</rdfs:comment>
+        <rdfs:label xml:lang="fr">a température</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://hl7.org/fhir/Condition -->
+
+    <owl:Class rdf:about="http://hl7.org/fhir/Condition">
+        <owl:equivalentClass rdf:resource="http://www.ontologie-medicale.fr/onto#ConditionMedicale"/>
+    </owl:Class>
+    
+
+
+    <!-- http://hl7.org/fhir/DiagnosticReport -->
+
+    <owl:Class rdf:about="http://hl7.org/fhir/DiagnosticReport">
+        <owl:equivalentClass rdf:resource="http://www.ontologie-medicale.fr/onto#TestLaboratoire"/>
+    </owl:Class>
+    
+
+
+    <!-- http://hl7.org/fhir/EpisodeOfCare -->
+
+    <owl:Class rdf:about="http://hl7.org/fhir/EpisodeOfCare">
+        <owl:equivalentClass rdf:resource="http://www.ontologie-medicale.fr/onto#DossierMedical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://hl7.org/fhir/Medication -->
+
+    <owl:Class rdf:about="http://hl7.org/fhir/Medication">
+        <owl:equivalentClass rdf:resource="http://www.ontologie-medicale.fr/onto#Medicament"/>
+    </owl:Class>
+    
+
+
+    <!-- http://hl7.org/fhir/MedicationRequest -->
+
+    <owl:Class rdf:about="http://hl7.org/fhir/MedicationRequest">
+        <owl:equivalentClass rdf:resource="http://www.ontologie-medicale.fr/onto#Prescription"/>
+    </owl:Class>
+    
+
+
+    <!-- http://hl7.org/fhir/MedicationStatement -->
+
+    <owl:Class rdf:about="http://hl7.org/fhir/MedicationStatement">
+        <owl:equivalentClass rdf:resource="http://www.ontologie-medicale.fr/onto#Traitement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://hl7.org/fhir/Patient -->
+
+    <owl:Class rdf:about="http://hl7.org/fhir/Patient">
+        <owl:equivalentClass rdf:resource="http://www.ontologie-medicale.fr/onto#Patient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://schema.org/MedicalOrganization -->
+
+    <owl:Class rdf:about="http://schema.org/MedicalOrganization">
+        <owl:equivalentClass rdf:resource="http://www.ontologie-medicale.fr/onto#Etablissement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#Analgesique -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#Analgesique">
+        <rdfs:subClassOf rdf:resource="http://www.ontologie-medicale.fr/onto#Medicament"/>
+        <owl:disjointWith rdf:resource="http://www.ontologie-medicale.fr/onto#Antibiotique"/>
+        <owl:disjointWith rdf:resource="http://www.ontologie-medicale.fr/onto#Vaccin"/>
+        <rdfs:comment xml:lang="fr">Médicament qui soulage la douleur</rdfs:comment>
+        <rdfs:label xml:lang="fr">Analgésique</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#Antibiotique -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#Antibiotique">
+        <rdfs:subClassOf rdf:resource="http://www.ontologie-medicale.fr/onto#Medicament"/>
+        <owl:disjointWith rdf:resource="http://www.ontologie-medicale.fr/onto#Vaccin"/>
+        <rdfs:comment xml:lang="fr">Médicament utilisé pour traiter les infections bactériennes</rdfs:comment>
+        <rdfs:label xml:lang="fr">Antibiotique</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#Cardiologue -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#Cardiologue">
+        <rdfs:subClassOf rdf:resource="http://www.ontologie-medicale.fr/onto#Specialiste"/>
+        <owl:disjointWith rdf:resource="http://www.ontologie-medicale.fr/onto#Neurologue"/>
+        <owl:disjointWith rdf:resource="http://www.ontologie-medicale.fr/onto#Pediatre"/>
+        <rdfs:comment xml:lang="fr">Médecin spécialisé dans le diagnostic et le traitement des maladies cardiaques</rdfs:comment>
+        <rdfs:label xml:lang="fr">Cardiologue</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#ChefDeService -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#ChefDeService">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ontologie-medicale.fr/onto#Medecin"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ontologie-medicale.fr/onto#estResponsableDe"/>
+                        <owl:someValuesFrom rdf:resource="http://www.ontologie-medicale.fr/onto#Service"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.ontologie-medicale.fr/onto#Medecin"/>
+        <rdfs:comment xml:lang="fr">Médecin qui dirige un service médical</rdfs:comment>
+        <rdfs:label xml:lang="fr">Chef de service</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#Chirurgie -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#Chirurgie">
+        <rdfs:subClassOf rdf:resource="http://www.ontologie-medicale.fr/onto#Traitement"/>
+        <owl:disjointWith rdf:resource="http://www.ontologie-medicale.fr/onto#Medicament"/>
+        <owl:disjointWith rdf:resource="http://www.ontologie-medicale.fr/onto#Therapie"/>
+        <rdfs:comment xml:lang="fr">Traitement médical impliquant une intervention physique sur les tissus</rdfs:comment>
+        <rdfs:label xml:lang="fr">Chirurgie</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#ConditionMedicale -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#ConditionMedicale">
+        <rdfs:comment xml:lang="fr">État de santé ou pathologie affectant un patient</rdfs:comment>
+        <rdfs:label xml:lang="fr">Condition Médicale</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#Diagnostic -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#Diagnostic">
+        <rdfs:subClassOf rdf:resource="http://www.ontologie-medicale.fr/onto#DossierMedical"/>
+        <rdfs:comment xml:lang="fr">Identification d&apos;une maladie ou d&apos;une condition basée sur ses signes et symptômes</rdfs:comment>
+        <rdfs:label xml:lang="fr">Diagnostic</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#DossierMedical -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#DossierMedical">
+        <rdfs:comment xml:lang="fr">Document contenant les informations médicales d&apos;un patient</rdfs:comment>
+        <rdfs:label xml:lang="fr">Dossier Médical</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#Douleur -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#Douleur">
+        <rdfs:subClassOf rdf:resource="http://www.ontologie-medicale.fr/onto#Symptome"/>
+        <rdfs:comment xml:lang="fr">Sensation désagréable causée par une stimulation nocive des terminaisons nerveuses</rdfs:comment>
+        <rdfs:label xml:lang="fr">Douleur</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#Etablissement -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#Etablissement">
+        <rdfs:comment xml:lang="fr">Structure où sont prodigués des soins médicaux</rdfs:comment>
+        <rdfs:label xml:lang="fr">Etablissement de santé</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#Fatigue -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#Fatigue">
+        <rdfs:subClassOf rdf:resource="http://www.ontologie-medicale.fr/onto#Symptome"/>
+        <rdfs:comment xml:lang="fr">Sensation de manque d&apos;énergie, d&apos;épuisement ou de lassitude</rdfs:comment>
+        <rdfs:label xml:lang="fr">Fatigue</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#Fievre -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#Fievre">
+        <rdfs:subClassOf rdf:resource="http://www.ontologie-medicale.fr/onto#Symptome"/>
+        <rdfs:comment xml:lang="fr">Élévation de la température corporelle au-dessus de la normale</rdfs:comment>
+        <rdfs:label xml:lang="fr">Fièvre</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#Infirmier -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#Infirmier">
+        <rdfs:subClassOf rdf:resource="http://www.ontologie-medicale.fr/onto#ProfessionnelMedical"/>
+        <owl:disjointWith rdf:resource="http://www.ontologie-medicale.fr/onto#Medecin"/>
+        <owl:disjointWith rdf:resource="http://www.ontologie-medicale.fr/onto#Pharmacien"/>
+        <rdfs:comment xml:lang="fr">Professionnel de santé qui fournit des soins aux patients sous la direction d&apos;un médecin</rdfs:comment>
+        <rdfs:label xml:lang="fr">Infirmier</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#Maladie -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#Maladie">
+        <rdfs:subClassOf rdf:resource="http://www.ontologie-medicale.fr/onto#ConditionMedicale"/>
+        <owl:disjointWith rdf:resource="http://www.ontologie-medicale.fr/onto#Symptome"/>
+        <rdfs:comment xml:lang="fr">Condition médicale anormale affectant un organisme</rdfs:comment>
+        <rdfs:label xml:lang="fr">Maladie</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#MaladieAigue -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#MaladieAigue">
+        <rdfs:subClassOf rdf:resource="http://www.ontologie-medicale.fr/onto#Maladie"/>
+        <owl:disjointWith rdf:resource="http://www.ontologie-medicale.fr/onto#MaladieChronique"/>
+        <rdfs:comment xml:lang="fr">Maladie qui apparaît soudainement et évolue rapidement</rdfs:comment>
+        <rdfs:label xml:lang="fr">Maladie Aiguë</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#MaladieChronique -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#MaladieChronique">
+        <rdfs:subClassOf rdf:resource="http://www.ontologie-medicale.fr/onto#Maladie"/>
+        <rdfs:comment xml:lang="fr">Maladie de longue durée qui évolue généralement lentement</rdfs:comment>
+        <rdfs:label xml:lang="fr">Maladie Chronique</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#MaladieInfectieuse -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#MaladieInfectieuse">
+        <rdfs:subClassOf rdf:resource="http://www.ontologie-medicale.fr/onto#Maladie"/>
+        <rdfs:comment xml:lang="fr">Maladie causée par des microorganismes pathogènes comme les bactéries, virus ou parasites</rdfs:comment>
+        <rdfs:label xml:lang="fr">Maladie Infectieuse</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#Medecin -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#Medecin">
+        <rdfs:subClassOf rdf:resource="http://www.ontologie-medicale.fr/onto#ProfessionnelMedical"/>
+        <owl:disjointWith rdf:resource="http://www.ontologie-medicale.fr/onto#Pharmacien"/>
+        <rdfs:comment xml:lang="fr">Professionnel de santé autorisé à diagnostiquer des maladies et à prescrire des traitements</rdfs:comment>
+        <rdfs:label xml:lang="fr">Médecin</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#MedecinGeneraliste -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#MedecinGeneraliste">
+        <rdfs:subClassOf rdf:resource="http://www.ontologie-medicale.fr/onto#Medecin"/>
+        <owl:disjointWith rdf:resource="http://www.ontologie-medicale.fr/onto#Specialiste"/>
+        <rdfs:comment xml:lang="fr">Médecin qui traite une variété de conditions médicales courantes et oriente vers des spécialistes si nécessaire</rdfs:comment>
+        <rdfs:label xml:lang="fr">Médecin Généraliste</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#Medicament -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#Medicament">
+        <rdfs:subClassOf rdf:resource="http://www.ontologie-medicale.fr/onto#Traitement"/>
+        <owl:disjointWith rdf:resource="http://www.ontologie-medicale.fr/onto#Therapie"/>
+        <rdfs:comment xml:lang="fr">Substance utilisée pour prévenir, diagnostiquer, traiter ou soulager des symptômes d&apos;une maladie</rdfs:comment>
+        <rdfs:label xml:lang="fr">Médicament</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#Neurologue -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#Neurologue">
+        <rdfs:subClassOf rdf:resource="http://www.ontologie-medicale.fr/onto#Specialiste"/>
+        <owl:disjointWith rdf:resource="http://www.ontologie-medicale.fr/onto#Pediatre"/>
+        <rdfs:comment xml:lang="fr">Médecin spécialisé dans le diagnostic et le traitement des troubles du système nerveux</rdfs:comment>
+        <rdfs:label xml:lang="fr">Neurologue</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#Patient -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#Patient">
+        <rdfs:subClassOf rdf:resource="http://www.ontologie-medicale.fr/onto#Personne"/>
+        <owl:disjointWith rdf:resource="http://www.ontologie-medicale.fr/onto#ProfessionnelMedical"/>
+        <rdfs:comment xml:lang="fr">Personne qui reçoit ou est inscrite pour recevoir des soins médicaux</rdfs:comment>
+        <rdfs:label xml:lang="fr">Patient</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#PatientARisque -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#PatientARisque">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ontologie-medicale.fr/onto#Patient"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ontologie-medicale.fr/onto#aPourSymptome"/>
+                        <owl:someValuesFrom rdf:resource="http://www.ontologie-medicale.fr/onto#Fievre"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ontologie-medicale.fr/onto#aAge"/>
+                        <owl:someValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+                                <owl:withRestrictions rdf:parseType="Collection">
+                                    <rdf:Description>
+                                        <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">65</xsd:minInclusive>
+                                    </rdf:Description>
+                                </owl:withRestrictions>
+                            </rdfs:Datatype>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.ontologie-medicale.fr/onto#Patient"/>
+        <rdfs:comment xml:lang="fr">Patient présentant des facteurs de risque spécifiques</rdfs:comment>
+        <rdfs:label xml:lang="fr">Patient à risque</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#Pediatre -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#Pediatre">
+        <rdfs:subClassOf rdf:resource="http://www.ontologie-medicale.fr/onto#Specialiste"/>
+        <rdfs:comment xml:lang="fr">Médecin spécialisé dans les soins des enfants et adolescents</rdfs:comment>
+        <rdfs:label xml:lang="fr">Pédiatre</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#Personne -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#Personne">
+        <owl:equivalentClass rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+        <rdfs:comment xml:lang="fr">Un être humain dans le contexte médical</rdfs:comment>
+        <rdfs:label xml:lang="fr">Personne</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#Pharmacien -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#Pharmacien">
+        <rdfs:subClassOf rdf:resource="http://www.ontologie-medicale.fr/onto#ProfessionnelMedical"/>
+        <rdfs:comment xml:lang="fr">Professionnel de santé spécialisé dans la préparation et la distribution de médicaments</rdfs:comment>
+        <rdfs:label xml:lang="fr">Pharmacien</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#Prescription -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#Prescription">
+        <rdfs:subClassOf rdf:resource="http://www.ontologie-medicale.fr/onto#DossierMedical"/>
+        <rdfs:comment xml:lang="fr">Instruction écrite d&apos;un médecin autorisant un traitement</rdfs:comment>
+        <rdfs:label xml:lang="fr">Prescription</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#ProfessionnelMedical -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#ProfessionnelMedical">
+        <rdfs:subClassOf rdf:resource="http://www.ontologie-medicale.fr/onto#Personne"/>
+        <rdfs:comment xml:lang="fr">Personne qualifiée pour fournir des soins de santé</rdfs:comment>
+        <rdfs:label xml:lang="fr">Professionnel Médical</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#Service -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#Service">
+        <rdfs:subClassOf rdf:resource="http://www.ontologie-medicale.fr/onto#Etablissement"/>
+        <rdfs:comment xml:lang="fr">Unité fonctionnelle au sein d&apos;un établissement de santé</rdfs:comment>
+        <rdfs:label xml:lang="fr">Service médical</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#Specialiste -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#Specialiste">
+        <rdfs:subClassOf rdf:resource="http://www.ontologie-medicale.fr/onto#Medecin"/>
+        <rdfs:comment xml:lang="fr">Médecin ayant une formation avancée dans un domaine médical spécifique</rdfs:comment>
+        <rdfs:label xml:lang="fr">Médecin Spécialiste</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#Symptome -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#Symptome">
+        <rdfs:subClassOf rdf:resource="http://www.ontologie-medicale.fr/onto#ConditionMedicale"/>
+        <rdfs:comment xml:lang="fr">Manifestation perceptible d&apos;une condition médicale</rdfs:comment>
+        <rdfs:label xml:lang="fr">Symptôme</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#TestLaboratoire -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#TestLaboratoire">
+        <rdfs:subClassOf rdf:resource="http://www.ontologie-medicale.fr/onto#DossierMedical"/>
+        <rdfs:comment xml:lang="fr">Procédure médicale qui implique l&apos;analyse d&apos;échantillons biologiques</rdfs:comment>
+        <rdfs:label xml:lang="fr">Test de Laboratoire</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#Therapie -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#Therapie">
+        <rdfs:subClassOf rdf:resource="http://www.ontologie-medicale.fr/onto#Traitement"/>
+        <rdfs:comment xml:lang="fr">Traitement visant à soulager ou guérir un trouble, une maladie ou une blessure</rdfs:comment>
+        <rdfs:label xml:lang="fr">Thérapie</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#Traitement -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#Traitement">
+        <rdfs:comment xml:lang="fr">Intervention médicale visant à soigner ou soulager une condition médicale</rdfs:comment>
+        <rdfs:label xml:lang="fr">Traitement</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#Vaccin -->
+
+    <owl:Class rdf:about="http://www.ontologie-medicale.fr/onto#Vaccin">
+        <rdfs:subClassOf rdf:resource="http://www.ontologie-medicale.fr/onto#Medicament"/>
+        <rdfs:comment xml:lang="fr">Préparation biologique qui stimule l&apos;immunité contre une maladie spécifique</rdfs:comment>
+        <rdfs:label xml:lang="fr">Vaccin</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Person -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Person"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#cabinet1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#cabinet1">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#Etablissement"/>
+        <emploie rdf:resource="http://www.ontologie-medicale.fr/onto#medecin1"/>
+        <emploie rdf:resource="http://www.ontologie-medicale.fr/onto#medecin2"/>
+        <rdfs:label xml:lang="fr">Cabinet Médical du Centre</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#cardiologue1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#cardiologue1">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#Cardiologue"/>
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#ChefDeService"/>
+        <estResponsableDe rdf:resource="http://www.ontologie-medicale.fr/onto#service_cardiologie"/>
+        <prescrit rdf:resource="http://www.ontologie-medicale.fr/onto#traitement_antihypertenseur1"/>
+        <specialiseDans rdf:resource="http://www.ontologie-medicale.fr/onto#maladie_hypertension1"/>
+        <traite_patient rdf:resource="http://www.ontologie-medicale.fr/onto#patient2"/>
+        <travailleDans rdf:resource="http://www.ontologie-medicale.fr/onto#hopital1"/>
+        <aAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">48</aAge>
+        <aNom>Bernard</aNom>
+        <aPrenom>Sophie</aPrenom>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#chirurgie_bypass -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#chirurgie_bypass">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#Chirurgie"/>
+        <realiseePar rdf:resource="http://www.ontologie-medicale.fr/onto#cardiologue1"/>
+        <traite rdf:resource="http://www.ontologie-medicale.fr/onto#maladie_hypertension1"/>
+        <rdfs:label xml:lang="fr">Pontage coronarien</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#clinique1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#clinique1">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#Etablissement"/>
+        <emploie rdf:resource="http://www.ontologie-medicale.fr/onto#pediatre1"/>
+        <rdfs:label xml:lang="fr">Clinique Saint-Joseph</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#diagnostic1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#diagnostic1">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#Diagnostic"/>
+        <rdfs:label xml:lang="fr">Diagnostic de grippe pour Jean Dupont</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#dossier_patient1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#dossier_patient1">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#DossierMedical"/>
+        <inclut rdf:resource="http://www.ontologie-medicale.fr/onto#test_sanguin1"/>
+        <rdfs:label xml:lang="fr">Dossier médical de Jean Dupont</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#dossier_patient2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#dossier_patient2">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#DossierMedical"/>
+        <inclut rdf:resource="http://www.ontologie-medicale.fr/onto#test_sanguin2"/>
+        <rdfs:label xml:lang="fr">Dossier médical de Sophie Martin</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#hopital1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#hopital1">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#Etablissement"/>
+        <emploie rdf:resource="http://www.ontologie-medicale.fr/onto#cardiologue1"/>
+        <emploie rdf:resource="http://www.ontologie-medicale.fr/onto#infirmier1"/>
+        <emploie rdf:resource="http://www.ontologie-medicale.fr/onto#neurologue1"/>
+        <rdfs:label xml:lang="fr">CHU de Lyon</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#infirmier1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#infirmier1">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#Infirmier"/>
+        <administre rdf:resource="http://www.ontologie-medicale.fr/onto#traitement_antibiotique1"/>
+        <travailleDans rdf:resource="http://www.ontologie-medicale.fr/onto#hopital1"/>
+        <aAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">35</aAge>
+        <aNom>Petit</aNom>
+        <aPrenom>Julien</aPrenom>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#maladie_alzheimer1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#maladie_alzheimer1">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#MaladieChronique"/>
+        <cause rdf:resource="http://www.ontologie-medicale.fr/onto#symptome_memoire1"/>
+        <rdfs:label xml:lang="fr">Maladie d&apos;Alzheimer</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#maladie_grippe1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#maladie_grippe1">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#MaladieAigue"/>
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#MaladieInfectieuse"/>
+        <cause rdf:resource="http://www.ontologie-medicale.fr/onto#symptome_fatigue1"/>
+        <cause rdf:resource="http://www.ontologie-medicale.fr/onto#symptome_fievre1"/>
+        <diagnostiqueePour rdf:resource="http://www.ontologie-medicale.fr/onto#patient1"/>
+        <traitePar_traitement rdf:resource="http://www.ontologie-medicale.fr/onto#traitement_antibiotique1"/>
+        <rdfs:label xml:lang="fr">Grippe saisonnière</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#maladie_hypertension1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#maladie_hypertension1">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#MaladieChronique"/>
+        <cause rdf:resource="http://www.ontologie-medicale.fr/onto#symptome_douleur1"/>
+        <diagnostiqueePour rdf:resource="http://www.ontologie-medicale.fr/onto#patient2"/>
+        <traitePar_traitement rdf:resource="http://www.ontologie-medicale.fr/onto#traitement_antihypertenseur1"/>
+        <rdfs:label xml:lang="fr">Hypertension artérielle</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#maladie_pneumonie1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#maladie_pneumonie1">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#MaladieInfectieuse"/>
+        <cause rdf:resource="http://www.ontologie-medicale.fr/onto#symptome_douleur2"/>
+        <cause rdf:resource="http://www.ontologie-medicale.fr/onto#symptome_fievre1"/>
+        <diagnostiqueePour rdf:resource="http://www.ontologie-medicale.fr/onto#patient3"/>
+        <traitePar_traitement rdf:resource="http://www.ontologie-medicale.fr/onto#traitement_antibiotique2"/>
+        <rdfs:label xml:lang="fr">Pneumonie bactérienne</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#medecin1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#medecin1">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#MedecinGeneraliste"/>
+        <prescrit rdf:resource="http://www.ontologie-medicale.fr/onto#traitement_antibiotique1"/>
+        <traite_patient rdf:resource="http://www.ontologie-medicale.fr/onto#patient1"/>
+        <travailleDans rdf:resource="http://www.ontologie-medicale.fr/onto#cabinet1"/>
+        <aAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">52</aAge>
+        <aNom>Leroy</aNom>
+        <aPrenom>Pierre</aPrenom>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#medecin2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#medecin2">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#MedecinGeneraliste"/>
+        <prescrit rdf:resource="http://www.ontologie-medicale.fr/onto#traitement_antibiotique2"/>
+        <traite_patient rdf:resource="http://www.ontologie-medicale.fr/onto#patient3"/>
+        <travailleDans rdf:resource="http://www.ontologie-medicale.fr/onto#cabinet1"/>
+        <aAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">45</aAge>
+        <aNom>Dubois</aNom>
+        <aPrenom>Marie</aPrenom>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#medicament_analgesique1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#medicament_analgesique1">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#Analgesique"/>
+        <estCompatibleAvec rdf:resource="http://www.ontologie-medicale.fr/onto#traitement_antihypertenseur1"/>
+        <aDosage>1000mg</aDosage>
+        <aFrequence>4 fois par jour si besoin</aFrequence>
+        <rdfs:label xml:lang="fr">Paracétamol 1000mg</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#medicament_penicilline -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#medicament_penicilline">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#Antibiotique"/>
+        <allergeneChez rdf:resource="http://www.ontologie-medicale.fr/onto#patient2"/>
+        <estIncompatibleAvec rdf:resource="http://www.ontologie-medicale.fr/onto#medicament_analgesique1"/>
+        <rdfs:label xml:lang="fr">Pénicilline</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#neurologue1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#neurologue1">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#Neurologue"/>
+        <specialiseDans rdf:resource="http://www.ontologie-medicale.fr/onto#maladie_alzheimer1"/>
+        <travailleDans rdf:resource="http://www.ontologie-medicale.fr/onto#hopital1"/>
+        <aAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">55</aAge>
+        <aNom>Richard</aNom>
+        <aPrenom>Paul</aPrenom>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#patient1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#patient1">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#Patient"/>
+        <aPourSymptome rdf:resource="http://www.ontologie-medicale.fr/onto#symptome_fievre1"/>
+        <diagnostiqueAvec rdf:resource="http://www.ontologie-medicale.fr/onto#maladie_grippe1"/>
+        <suit rdf:resource="http://www.ontologie-medicale.fr/onto#traitement_antibiotique1"/>
+        <traitePar rdf:resource="http://www.ontologie-medicale.fr/onto#medecin1"/>
+        <aAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">45</aAge>
+        <aDateNaissance rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1980-05-15T00:00:00</aDateNaissance>
+        <aGroupeSanguin>A+</aGroupeSanguin>
+        <aNom>Dupont</aNom>
+        <aPoids rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">75.5</aPoids>
+        <aPrenom>Jean</aPrenom>
+        <aTaille rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">178.0</aTaille>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#patient2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#patient2">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#Patient"/>
+        <aPourAllergieA rdf:resource="http://www.ontologie-medicale.fr/onto#medicament_penicilline"/>
+        <aPourSymptome rdf:resource="http://www.ontologie-medicale.fr/onto#symptome_douleur1"/>
+        <aPourSymptome rdf:resource="http://www.ontologie-medicale.fr/onto#symptome_fatigue1"/>
+        <diagnostiqueAvec rdf:resource="http://www.ontologie-medicale.fr/onto#maladie_hypertension1"/>
+        <traitePar rdf:resource="http://www.ontologie-medicale.fr/onto#cardiologue1"/>
+        <aAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">67</aAge>
+        <aDateNaissance rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1958-11-22T00:00:00</aDateNaissance>
+        <aGroupeSanguin>O-</aGroupeSanguin>
+        <aNom>Martin</aNom>
+        <aPoids rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">62.0</aPoids>
+        <aPrenom>Sophie</aPrenom>
+        <aTaille rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">165.0</aTaille>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#patient3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#patient3">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#Patient"/>
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#PatientARisque"/>
+        <aPourSymptome rdf:resource="http://www.ontologie-medicale.fr/onto#symptome_fievre1"/>
+        <diagnostiqueAvec rdf:resource="http://www.ontologie-medicale.fr/onto#maladie_pneumonie1"/>
+        <suit rdf:resource="http://www.ontologie-medicale.fr/onto#traitement_antibiotique2"/>
+        <traitePar rdf:resource="http://www.ontologie-medicale.fr/onto#medecin2"/>
+        <aAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">72</aAge>
+        <aDateNaissance rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1953-03-10T00:00:00</aDateNaissance>
+        <aGroupeSanguin>B+</aGroupeSanguin>
+        <aNom>Petit</aNom>
+        <aPoids rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">68.0</aPoids>
+        <aPrenom>Robert</aPrenom>
+        <aTaille rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">170.0</aTaille>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#pediatre1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#pediatre1">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#Pediatre"/>
+        <travailleDans rdf:resource="http://www.ontologie-medicale.fr/onto#clinique1"/>
+        <aAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">38</aAge>
+        <aNom>Simon</aNom>
+        <aPrenom>Jeanne</aPrenom>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#pharmacie1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#pharmacie1">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#Etablissement"/>
+        <emploie rdf:resource="http://www.ontologie-medicale.fr/onto#pharmacien1"/>
+        <rdfs:label xml:lang="fr">Pharmacie Centrale</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#pharmacien1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#pharmacien1">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#Pharmacien"/>
+        <travailleDans rdf:resource="http://www.ontologie-medicale.fr/onto#pharmacie1"/>
+        <aAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">42</aAge>
+        <aNom>Moreau</aNom>
+        <aPrenom>Louise</aPrenom>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#prescription1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#prescription1">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#Prescription"/>
+        <rdfs:label xml:lang="fr">Prescription d&apos;antibiotique pour Jean Dupont</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#service_cardiologie -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#service_cardiologie">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#Service"/>
+        <aPourResponsable rdf:resource="http://www.ontologie-medicale.fr/onto#cardiologue1"/>
+        <rdfs:label xml:lang="fr">Service de Cardiologie</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#symptome_douleur1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#symptome_douleur1">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#Douleur"/>
+        <causePar rdf:resource="http://www.ontologie-medicale.fr/onto#maladie_hypertension1"/>
+        <observeChezPatient rdf:resource="http://www.ontologie-medicale.fr/onto#patient2"/>
+        <rdfs:label xml:lang="fr">Douleur thoracique</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#symptome_douleur2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#symptome_douleur2">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#Douleur"/>
+        <causePar rdf:resource="http://www.ontologie-medicale.fr/onto#maladie_pneumonie1"/>
+        <observeChezPatient rdf:resource="http://www.ontologie-medicale.fr/onto#patient3"/>
+        <rdfs:label xml:lang="fr">Douleur thoracique à la respiration</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#symptome_fatigue1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#symptome_fatigue1">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#Fatigue"/>
+        <causePar rdf:resource="http://www.ontologie-medicale.fr/onto#maladie_grippe1"/>
+        <observeChezPatient rdf:resource="http://www.ontologie-medicale.fr/onto#patient1"/>
+        <rdfs:label xml:lang="fr">Fatigue intense</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#symptome_fievre1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#symptome_fievre1">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#Fievre"/>
+        <causePar rdf:resource="http://www.ontologie-medicale.fr/onto#maladie_grippe1"/>
+        <causePar rdf:resource="http://www.ontologie-medicale.fr/onto#maladie_pneumonie1"/>
+        <observeChezPatient rdf:resource="http://www.ontologie-medicale.fr/onto#patient1"/>
+        <observeChezPatient rdf:resource="http://www.ontologie-medicale.fr/onto#patient3"/>
+        <rdfs:label xml:lang="fr">Fièvre élevée</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#symptome_memoire1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#symptome_memoire1">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#Symptome"/>
+        <causePar rdf:resource="http://www.ontologie-medicale.fr/onto#maladie_alzheimer1"/>
+        <rdfs:label xml:lang="fr">Perte de mémoire progressive</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#test_sanguin1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#test_sanguin1">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#TestLaboratoire"/>
+        <faitPartieDe rdf:resource="http://www.ontologie-medicale.fr/onto#dossier_patient1"/>
+        <rdfs:label xml:lang="fr">Analyse sanguine complète - Jean Dupont</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#test_sanguin2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#test_sanguin2">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#TestLaboratoire"/>
+        <faitPartieDe rdf:resource="http://www.ontologie-medicale.fr/onto#dossier_patient2"/>
+        <rdfs:label xml:lang="fr">Analyse sanguine spécifique - Sophie Martin</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#therapie_cognitivo_comportementale -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#therapie_cognitivo_comportementale">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#Therapie"/>
+        <aDateDebut rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-02-01T00:00:00</aDateDebut>
+        <rdfs:label xml:lang="fr">Thérapie Cognitivo-Comportementale</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#traitement_antibiotique1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#traitement_antibiotique1">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#Antibiotique"/>
+        <administrePar rdf:resource="http://www.ontologie-medicale.fr/onto#infirmier1"/>
+        <prescritPar rdf:resource="http://www.ontologie-medicale.fr/onto#medecin1"/>
+        <suiviPar rdf:resource="http://www.ontologie-medicale.fr/onto#patient1"/>
+        <traite rdf:resource="http://www.ontologie-medicale.fr/onto#maladie_grippe1"/>
+        <aDateDebut rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-04-01T00:00:00</aDateDebut>
+        <aDateFin rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-04-10T00:00:00</aDateFin>
+        <aDosage>500mg</aDosage>
+        <aFrequence>3 fois par jour</aFrequence>
+        <rdfs:label xml:lang="fr">Amoxicilline 500mg</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#traitement_antibiotique2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#traitement_antibiotique2">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#Antibiotique"/>
+        <prescritPar rdf:resource="http://www.ontologie-medicale.fr/onto#medecin2"/>
+        <suiviPar rdf:resource="http://www.ontologie-medicale.fr/onto#patient3"/>
+        <traite rdf:resource="http://www.ontologie-medicale.fr/onto#maladie_pneumonie1"/>
+        <aDateDebut rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-04-05T00:00:00</aDateDebut>
+        <aDateFin rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-04-12T00:00:00</aDateFin>
+        <aDosage>250mg</aDosage>
+        <aFrequence>1 fois par jour</aFrequence>
+        <rdfs:label xml:lang="fr">Azithromycine 250mg</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#traitement_antihypertenseur1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#traitement_antihypertenseur1">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#Medicament"/>
+        <estCompatibleAvec rdf:resource="http://www.ontologie-medicale.fr/onto#medicament_analgesique1"/>
+        <prescritPar rdf:resource="http://www.ontologie-medicale.fr/onto#cardiologue1"/>
+        <suiviPar rdf:resource="http://www.ontologie-medicale.fr/onto#patient2"/>
+        <traite rdf:resource="http://www.ontologie-medicale.fr/onto#maladie_hypertension1"/>
+        <aDateDebut rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-03-15T00:00:00</aDateDebut>
+        <aDosage>5mg</aDosage>
+        <aFrequence>1 fois par jour</aFrequence>
+        <rdfs:label xml:lang="fr">Amlodipine 5mg</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologie-medicale.fr/onto#vaccin_grippe -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologie-medicale.fr/onto#vaccin_grippe">
+        <rdf:type rdf:resource="http://www.ontologie-medicale.fr/onto#Vaccin"/>
+        <traite rdf:resource="http://www.ontologie-medicale.fr/onto#maladie_grippe1"/>
+        <rdfs:label xml:lang="fr">Vaccin antigrippal</rdfs:label>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
+
