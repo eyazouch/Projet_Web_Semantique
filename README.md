@@ -1,56 +1,31 @@
-# Projet d'Ontologie du Domaine Médical
+# Ontologie du Domaine Médical : Modélisation sémantique des relations patients-professionnels-maladies
 
 ## Contexte
-
-Ce projet est réalisé dans le cadre du cours de technologies sémantiques. Il vise à créer une ontologie complète du domaine médical en utilisant RDF, RDFS, OWL et SPARQL.
+Ce projet a été réalisé dans le cadre du cours de technologies sémantiques. Il vise à créer une ontologie complète du domaine médical en utilisant les technologies du Web Sémantique: RDF, RDFS, OWL et SPARQL, complétées par des règles d'inférence SWRL.
 
 ## Choix du domaine médical
-
 Le domaine médical a été choisi pour les raisons suivantes:
 
-1. **Structure hiérarchique naturelle**: Les maladies, symptômes et traitements s'organisent naturellement en catégories et sous-catégories, ce qui est idéal pour une représentation ontologique.
+- **Structure hiérarchique naturelle**: Les maladies, symptômes et traitements s'organisent naturellement en catégories et sous-catégories, ce qui est idéal pour une représentation ontologique.
 
-2. **Relations complexes**: Le domaine médical offre des relations riches entre les entités (patient-symptôme, médecin-traitement, maladie-symptôme), permettant d'exploiter pleinement les capacités de RDF.
+- **Relations complexes**: Le domaine médical offre des relations riches entre les entités (patient-symptôme, médecin-traitement, maladie-symptôme), permettant d'exploiter pleinement les capacités de RDF.
 
-3. **Potentiel d'inférence**: Les connaissances médicales se prêtent bien à l'inférence automatique (ex: diagnostic à partir de symptômes), ce qui valorisera l'utilisation d'OWL et SWRL.
+- **Potentiel d'inférence**: Les connaissances médicales se prêtent bien à l'inférence automatique (ex: diagnostic à partir de symptômes), ce qui valorise l'utilisation d'OWL et SWRL.
 
-4. **Utilité pratique**: Une ontologie médicale peut avoir des applications concrètes comme l'aide au diagnostic ou la détection d'interactions médicamenteuses.
+- **Utilité pratique**: Une ontologie médicale peut avoir des applications concrètes comme l'aide au diagnostic ou la détection d'interactions médicamenteuses.
 
-5. **Accessibilité des concepts**: Même sans expertise médicale approfondie, les concepts de base sont compréhensibles, facilitant la modélisation.
-
-## Concepts principaux à modéliser
-
-### Entités
-- **Patient**: Personne recevant des soins médicaux
-- **Professionnel médical**: Médecins, infirmiers, pharmaciens...
-- **Maladie**: Affections et conditions médicales
-- **Symptôme**: Manifestations cliniques observables
-- **Traitement**: Médicaments, procédures et thérapies
-- **Dossier médical**: Enregistrements des diagnostics et traitements
-
-### Relations principales
-- Patient présente des symptômes
-- Médecin diagnostique des maladies
-- Maladie provoque des symptômes
-- Médecin prescrit des traitements
-- Traitement cible des maladies
-- Patient suit des traitements
+- **Accessibilité des concepts**: Même sans expertise médicale approfondie, les concepts de base sont compréhensibles, facilitant la modélisation.
 
 ## Structure du projet
 - `/ontologie`: Fichiers de l'ontologie au format RDF/XML et OWL
 - `/sparql`: Requêtes SPARQL d'interrogation de l'ontologie
 - `/documentation`: Documentation détaillée du projet
+- `/rules`: Règles SWRL pour l'enrichissement de l'ontologie
 
-## Phase RDF/RDFS
+## Modélisation RDF/RDFS/OWL
 
-### Modélisation avec RDF et RDFS
-
-Pour cette phase, nous avons développé une ontologie médicale en utilisant RDF (Resource Description Framework) et RDFS (RDF Schema) pour définir la structure fondamentale de notre domaine.
-
-#### Hiérarchie des classes
-
-```
-- Personne
+### Hiérarchie des classes
+- **Personne**
   - Patient
   - ProfessionnelMedical
     - Medecin
@@ -58,7 +33,7 @@ Pour cette phase, nous avons développé une ontologie médicale en utilisant RD
       - Specialiste (Cardiologue, Neurologue, Pediatre)
     - Infirmier
     - Pharmacien
-- ConditionMedicale
+- **ConditionMedicale**
   - Maladie
     - MaladieInfectieuse
     - MaladieChronique
@@ -67,81 +42,106 @@ Pour cette phase, nous avons développé une ontologie médicale en utilisant RD
     - Douleur
     - Fievre
     - Fatigue
-- Traitement
+- **Traitement**
   - Medicament
     - Antibiotique
     - Analgesique
     - Vaccin
   - Chirurgie
   - Therapie
-- DossierMedical
+- **DossierMedical**
   - Diagnostic
   - Prescription
   - TestLaboratoire
-- Etablissement
+- **Etablissement**
   - Service
-```
 
-#### Propriétés d'objet (Object Properties)
+### Classes définies et restrictions
+- **PatientARisque**: Patient présentant de la fièvre et âgé de 65 ans ou plus
+- **ChefDeService**: Médecin responsable d'un service médical
 
-Nous avons défini plusieurs propriétés d'objet pour représenter les relations entre les entités:
+### Classes équivalentes
+- **Personne** équivalente à **foaf:Person**: Alignement avec le standard FOAF
+- **Patient** équivalent à **fhir:Patient**: Compatibilité avec le standard FHIR
+- **Medicament** équivalent à **fhir:Medication**: Interopérabilité avec les systèmes de santé
+- **DossierMedical** équivalent à **fhir:EpisodeOfCare**: Conformité aux normes médicales
+- **Etablissement** équivalent à **schema:MedicalOrganization**: Standardisation des organisations
 
-- **aPourSymptome**: Relie un Patient à un Symptôme qu'il présente
-- **diagnostiqueAvec**: Relie un Patient à une Maladie diagnostiquée
-- **traitePar**: Relie un Patient à un ProfessionnelMedical qui le soigne
-- **prescrit**: Relie un Médecin à un Traitement qu'il prescrit
-- **cause**: Relie une Maladie à un Symptôme qu'elle provoque
-- **traite**: Relie un Traitement à une Maladie qu'il soigne
-- **contreIndiquePour**: Relie un Médicament à une ConditionMedicale pour laquelle il est contre-indiqué
-- **travailleDans**: Relie un ProfessionnelMedical à un Etablissement où il exerce
-- **aPourAllergieA**: Relie un Patient à un Médicament auquel il est allergique
-- **realiseePar**: Relie une Chirurgie au Médecin qui la réalise
-- **faitPartieDe**: Relie un TestLaboratoire à un DossierMedical
-- **administre**: Relie un ProfessionnelMedical à un Traitement qu'il administre
-- **suiviPar**: Relie un Traitement à un Patient qui le suit
-- **estResponsableDe**: Relie un Médecin à un Service médical dont il est responsable
+### Propriétés d'objet (Object Properties)
+- **a pour symptôme**: Relation Patient → Symptôme (inverse: observé chez patient)
+- **diagnostiqué avec**: Relation Patient → Maladie (inverse: diagnostiquée pour)
+- **traité par**: Relation Patient → Professionnel Médical (inverse: traite patient)
+- **prescrit**: Relation Médecin → Traitement (inverse: prescrit par)
+- **traite**: Relation Traitement → Maladie (inverse: traitée par)
+- **cause**: Relation Maladie → Symptôme (inverse: causé par)
+- **suit**: Relation Patient → Traitement (inverse: suivi par)
+- **a pour allergie à**: Relation Patient → Médicament (inverse: allergène chez)
+- **est incompatible avec**: Relation Médicament → Médicament (propriété symétrique)
+- **travaille dans**: Relation Professionnel Médical → Établissement (inverse: emploie)
+- **est responsable de**: Relation Médecin → Service (inverse: a pour responsable)
+- **réalise**: Relation Médecin → Chirurgie (inverse: réalisée par)
+- **administre**: Relation Professionnel Médical → Traitement (inverse: administré par)
 
-#### Propriétés de données (Datatype Properties)
+### Propriétés de données (Datatype Properties)
+- **aNom**: Nom d'une personne (équivalent à foaf:familyName)
+- **aPrenom**: Prénom d'une personne (équivalent à foaf:givenName)
+- **aAge**: Âge en années (équivalent à foaf:age)
+- **aDateNaissance**: Date de naissance (équivalent à schema:birthDate)
+- **aPoids**: Poids en kilogrammes
+- **aTaille**: Taille en centimètres
+- **aTemperature**: Température corporelle
+- **aGroupeSanguin**: Groupe sanguin
+- **aDosage**: Dosage d'un médicament
+- **aFrequence**: Fréquence d'administration
+- **aDateDebut**: Date de début d'un traitement
+- **aDateFin**: Date de fin d'un traitement
 
-Les propriétés de données définies permettent d'attribuer des caractéristiques aux entités:
+## Utilisation des standards du Web Sémantique
 
-- **aNom**, **aPrenom**: Identifient une Personne (xsd:string)
-- **aAge**, **aDateNaissance**: Données démographiques (xsd:integer, xsd:dateTime)
-- **aPoids**, **aTaille**, **aGroupeSanguin**: Données médicales basiques (xsd:decimal, xsd:string)
-- **aTemperature**: Mesure de température corporelle (xsd:decimal)
-- **aDosage**, **aFrequence**: Informations sur les médicaments (xsd:string)
-- **aDateDebut**, **aDateFin**: Période de traitement (xsd:dateTime)
+Notre ontologie s'appuie sur plusieurs standards reconnus pour garantir l'interopérabilité et la réutilisabilité des connaissances :
 
-#### Namespaces utilisés
+### Standards fondamentaux
+- **RDF (Resource Description Framework)**: Fondation pour représenter les données sous forme de triplets
+- **RDFS (RDF Schema)**: Définition des hiérarchies de classes et des domaines/portées des propriétés
+- **OWL (Web Ontology Language)**: Modélisation avancée (classes équivalentes, propriétés inverses, disjonctions)
+- **XML Schema (xsd)**: Définition des types de données (dates, nombres, chaînes)
 
-Notre ontologie utilise plusieurs namespaces standards:
+### Standards spécifiques au domaine
+- **FOAF (Friend of a Friend)**: Modélisation des personnes et de leurs attributs
+- **Dublin Core (dc)**: Métadonnées de l'ontologie (créateur, date, description)
+- **FHIR (Fast Healthcare Interoperability Resources)**: Standard spécifique au domaine de la santé
+- **Schema.org**: Standard pour le balisage sémantique général du Web
 
-- **RDF et RDFS**: Structure de base de l'ontologie
-  - `http://www.w3.org/1999/02/22-rdf-syntax-ns#`
-  - `http://www.w3.org/2000/01/rdf-schema#`
+## Requêtes SPARQL
+Nous avons développé plusieurs requêtes SPARQL pour interroger notre ontologie:
 
-- **XML Schema (XSD)**: Types de données
-  - `http://www.w3.org/2001/XMLSchema#`
+1. **Liste des patients avec leurs symptômes**
+2. **Patients âgés de plus de 65 ans souffrant de fièvre**
+3. **Nombre de patients par type de maladie**
+4. **Traitements et médecins associés**
+5. **Patients sans traitement antibiotique**
 
-- **Dublin Core (DC)**: Métadonnées sur l'ontologie
-  - `http://purl.org/dc/elements/1.1/`
+## Règles SWRL
+Pour enrichir automatiquement notre ontologie, nous avons implémenté les règles SWRL suivantes:
 
-- **FOAF**: Représentation des personnes et leurs relations
-  - `http://xmlns.com/foaf/0.1/`
+1. **PatientARisqueRule**: Identifie les patients à risque (fièvre + âge avancé)
+2. **DetectionInteractionsMedicamenteusesRule**: Détecte les patients prenant des médicaments incompatibles
+3. **RegleAllergieContre-indique**: Déduit que les médicaments auxquels un patient est allergique sont contre-indiqués
+4. **RegleServiceMedical**: Déduit qu'un service médical fait partie de l'établissement où travaille son responsable
+5. **RegleSpecialisationMedecin**: Détermine la spécialisation d'un médecin selon les maladies qu'il traite
 
-- **OWL**: Pour les extensions futures (phase OWL)
-  - `http://www.w3.org/2002/07/owl#`
+## Avantages de l'ontologie
+- **Représentation riche des connaissances médicales**
+- **Inférence automatique de nouvelles connaissances**
+- **Interopérabilité avec d'autres systèmes médicaux**
+- **Détection automatique d'interactions médicamenteuses**
+- **Aide potentielle au diagnostic**
 
-#### Avantages de cette modélisation RDF/RDFS
+## Perspectives futures
+- Intégration avec des bases de données médicales existantes
+- Développement d'une interface utilisateur pour l'interrogation et la visualisation
+- Extension à des domaines médicaux spécifiques (cardiologie, oncologie, etc.)
+- Implémentation de règles diagnostiques plus complexes
 
-1. **Flexibilité**: La structure RDF permet d'ajouter facilement de nouvelles relations et classes sans perturber le modèle existant.
-
-2. **Expressivité**: RDFS nous permet de définir des hiérarchies de classes et de spécifier les domaines et images des propriétés.
-
-3. **Interopérabilité**: L'utilisation de namespaces standards facilite l'intégration avec d'autres ontologies médicales.
-
-4. **Évolutivité**: La structure peut être enrichie progressivement avec des concepts médicaux plus spécifiques.
-
-5. **Base pour l'inférence**: Cette modélisation RDF/RDFS constitue le fondement pour les règles d'inférence plus complexes qui seront développées dans les phases OWL et SWRL.
-
-Cette phase RDF/RDFS a permis d'établir une structure claire et cohérente du domaine médical, sur laquelle nous pourrons construire les étapes suivantes du projet.
+## Auteurs
+- Eya
