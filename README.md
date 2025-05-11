@@ -156,7 +156,7 @@ Pour enrichir notre ontologie, nous avons utilisé OWL (Web Ontology Language) p
 - **estCompatibleAvec**: Propriété symétrique (médicaments compatibles)
 - **aAntecedentDe**: Propriété transitive (historique médical d'un patient)
 
-## Règles SWRL
+## Règles SWRL et leurs inférences
 Pour enrichir davantage l'ontologie, nous avons défini plusieurs règles SWRL (Semantic Web Rule Language) qui permettent d'effectuer des inférences automatiques:
 
 ### ReglePatientARisque
@@ -170,6 +170,15 @@ med:aAge(?p, ?age) ^
 swrlb:greaterThanOrEqual(?age, 65)
 -> med:PatientARisque(?p)
 ```
+
+**Inférence démontrée:**
+- **Avant l'inférence:**
+  - Jean Dupont est un Patient
+  - Jean Dupont a une température de 39.2°C
+  - Jean Dupont a un âge de 72 ans
+- **Après l'inférence:**
+  - Jean Dupont est classifié comme PatientARisque
+
 Cette règle identifie automatiquement les patients à risque en se basant sur deux critères: avoir une fièvre supérieure à 38,5°C et être âgé de 65 ans ou plus.
 
 ### RegleAntibiotiquePourMaladieInfectieuse
@@ -184,7 +193,19 @@ med:Antibiotique(?t) ^
 med:suit(?p, ?t)
 -> med:traite(?t, ?m)
 ```
-Cette règle déduit qu'un antibiotique prescrit à un patient atteint d'une maladie infectieuse traite cette maladie.
+
+**Inférence démontrée:**
+- **Avant l'inférence:**
+  - Robert Petit est un Patient
+  - Pneumonie bactérienne est une MaladieInfectieuse
+  - Robert Petit est diagnostiqué avec Pneumonie bactérienne
+  - Azithromycine 250mg est un Antibiotique
+  - medecin2 prescrit Azithromycine 250mg
+  - Robert Petit suit Azithromycine 250mg
+- **Après l'inférence:**
+  - Azithromycine 250mg traite Pneumonie bactérienne
+
+Cette règle déduit qu'un antibiotique prescrit à un patient atteint d'une maladie infectieuse traite cette maladie, enrichissant ainsi automatiquement la base de connaissances thérapeutiques.
 
 ### RegleInfirmierAdministreMedicament
 ```
@@ -197,7 +218,19 @@ med:suit(?p, ?t) ^
 med:Medicament(?t)
 -> med:administre(?i, ?t)
 ```
-Cette règle déduit qu'un infirmier qui traite un patient suivant un médicament administre ce médicament.
+
+**Inférence démontrée:**
+- **Avant l'inférence:**
+  - Jean Dupont est un Patient
+  - Jean Dupont est traité par infirmier1
+  - Jean Dupont suit Amoxicilline 500mg
+  - infirmier1 est un Infirmier
+  - infirmier1 travaille dans HopitalX
+  - Amoxicilline 500mg est un Medicament
+- **Après l'inférence:**
+  - infirmier1 administre Amoxicilline 500mg
+
+Cette règle déduit qu'un infirmier qui traite un patient suivant un médicament administre ce médicament, facilitant ainsi la traçabilité des soins.
 
 ### RegleServiceMedical
 ```
@@ -208,7 +241,17 @@ med:travaille dans(?m, ?e) ^
 med:Etablissement(?e)
 -> med:fait partie de(?s, ?e)
 ```
-Cette règle déduit qu'un service médical dont un médecin est responsable fait partie de l'établissement où ce médecin travaille.
+
+**Inférence démontrée:**
+- **Avant l'inférence:**
+  - Service de Cardiologie est un Service médical
+  - cardiologue1 est un Cardiologue
+  - cardiologue1 est responsable de Service de Cardiologie
+  - cardiologue1 travaille dans CHU de Lyon
+- **Après l'inférence:**
+  - Service de Cardiologie fait partie de CHU de Lyon
+
+Cette règle déduit qu'un service médical dont un médecin est responsable fait partie de l'établissement où ce médecin travaille, structurant ainsi automatiquement l'organisation hospitalière.
 
 ## Requêtes SPARQL
 Pour interroger notre ontologie, nous avons développé plusieurs requêtes SPARQL qui démontrent différentes capacités:
@@ -292,12 +335,13 @@ ORDER BY ?nomPatient
 ```
 
 ## Conclusion
-Cette ontologie médicale offre plusieurs avantages par rapport à une base de données relationnelle traditionnelle:
+
+Mon ontologie médicale, enrichie par les règles SWRL, permet d'inférer automatiquement des relations cruciales comme l'identification des patients à risque, les liens thérapeutiques et l'organisation hospitalière. Cette approche sémantique dépasse les bases de données traditionnelles en générant de nouvelles connaissances, améliorant ainsi la décision clinique et l'interopérabilité des systèmes de santé.
+
+Les avantages principaux par rapport à une base de données relationnelle sont:
 
 - **Flexibilité**: La structure permet d'ajouter facilement de nouvelles entités et relations sans modifier le schéma existant.
-- **Inférence**: Les règles SWRL permettent de déduire automatiquement de nouvelles connaissances, comme l'identification des patients à risque.
+- **Inférence**: Les règles SWRL permettent de déduire automatiquement de nouvelles connaissances.
 - **Interopérabilité**: L'alignement avec des standards comme FHIR et FOAF facilite l'intégration avec d'autres systèmes.
 - **Richesse sémantique**: Les relations entre concepts sont explicites et significatives, permettant des requêtes plus expressives.
 - **Évolutivité**: L'ontologie peut être enrichie progressivement avec des concepts médicaux plus spécifiques.
-
-Cette modélisation sémantique permet non seulement de représenter efficacement les connaissances médicales, mais aussi de faciliter leur exploitation dans des applications d'aide à la décision clinique.
